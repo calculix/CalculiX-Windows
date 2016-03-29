@@ -1,0 +1,119 @@
+#####################################################################################
+# Name:          BuildInstructions.txt
+# Description:   Build instructions for MinGW-based Windows builds
+# Author:        Cesare Guardino
+# Last modified: 27 January 2016
+#
+# GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
+#####################################################################################
+
+
+1. INTRODUCTION
+===============
+
+It is strongly recommended to install all required systems tools and utilities
+in a directory with no embedded white spaces. You can skip some steps if you
+already have the correct tools installed on your system.
+
+
+2. INSTRUCTIONS FOR BUILDING ON WINDOWS
+=======================================
+
+1) Download and install 7-Zip (see reference list below). This is necessary to
+   be able to unzip the rest of the required packages mentioned in later steps.
+
+2) Download and install wget and MinGW-w64.
+
+3) Download and install MSYS (see reference list below).
+
+4) Obtain a copy of the CalculiX build script and patches directory (eg. CalculiX-GE-2.9-win-src)
+
+5) Open a new MSYS shell and chdir to your CalculiX-GE-2.9-win-src directory.
+
+6) Edit the user-modifiable entries in etc/bashrc.mingw to point to the
+   locations where you have installed the required system tools in the first two
+   steps (the first two functions only in bashrc.mingw). The order in which they
+   are added to the PATH (in the add_to_path function) is very important. The
+   PATH is read from left to right, so ensure the MinGW-w64 compiler are
+   prepended to the PATH, so they are found first.
+
+7) Source the file edited in the previous step using the command:
+       . etc/bashrc.mingw
+   (notice the dot "." command to source a file). This action also performs
+   a check on the versions of the installed system tools.
+   An example output is shown at the end of this file.
+
+8) If the version checks were all successful and printed the expected version
+   details, proceed with compiling the code. Run the following command:
+       ./build.sh 2.9 2.9
+   This will download and build all required third-party dependencies, build
+   CalculiX CCX and CGX, and create an install directory.
+
+9) To test the CCX build, run the script:
+       ./build.sh 2.9 2.9 test
+
+10) To create a stand-alone binary .zip or .7z package, run the script:
+       ./release.sh 2.9 2.9
+
+11) After the build has completed, you can run CCX or CGX in either of two ways:
+   (a). From the MSYS shell.
+   (b). From a standard Windows CMD.exe command prompt using the created
+        CalculiX-2.9-win-x64.zip or CalculiX-2.9-win-x64.7z stand-alone package.
+        This can be used on any Windows machine without access to MSYS shells or compilers.
+        See the READMEBinaryPackage.txt file in the generated package.
+
+
+3. EXTERNAL PACKAGE REFERENCE
+=============================
+
+Name   : 7-Zip
+Version: 9.20 (or above)
+URL    : http://www.7-zip.org/a/7z920-x64.msi
+For    : Extracting .zip and .7z files (can also be used to extract .tar.gz, .tar.bz2 etc.)
+
+Name   : MinGW-w64
+Version: 4.8.2 (or above)
+URL    : http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/4.8.2/threads-win32/seh/x86_64-4.8.2-release-win32-seh-rt_v3-rev3.7z/download
+For    : Windows port of GCC C/C++ compiler (also includes Fortran compiler).
+
+Name   : MSYS
+Version: Latest
+URL    : http://www.mingw.org/download/installer
+For    : Provides Linux-like emulation shell and utilities (eg. find, grep, ls, make etc.) and tools (eg. bison, flex, m4, yacc etc.).
+         Only the "mingw-developer-toolkit" and "msys-base" is required, DO NOT download ming32-* compiler packages (we use MinGW-w64 instead).
+         Assuming you installed this to the default /c/MinGW directory, you will need to "cp -p make.exe gmake.exe" in /c/MinGW/msys/1.0/bin (unless have Strawberry Perl).
+
+Name   : wget
+Version: 1.11.4-1 (or above)
+URL    : http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-bin.zip, http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-dep.zip, http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-doc.zip
+For    : Automatically downloading files from internet (eg. for use in automated build scripts)
+
+
+4. EXAMPLE OUTPUT FROM SOURCING etc/bashrc.mingw
+================================================
+
+$ . etc/bashrc.mingw
+Setting environment variables for user-defined installed system tools and utilities ...
+
+
+Adding user-defined installed system tools to PATH ...
+
+Checking versions of installed system tools (based on PATH) ...
+7-Zip:       /c/Program Files/7-Zip/7z.exe [ 7-Zip [64] 9.20 Copyright (c) 1999-2010 Igor Pavlov 2010-11-18]
+G++:         /c/Programs/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64/bin/g++.exe [g++.exe (x86_64-win32-seh-rev3, Built by MinGW-W64 project) 4.8.2]
+GCC:         /c/Programs/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64/bin/gcc.exe [gcc.exe (x86_64-win32-seh-rev3, Built by MinGW-W64 project) 4.8.2]
+GFortran:    /c/Programs/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64/bin/gfortran.exe [GNU Fortran (x86_64-win32-seh-rev3, Built by MinGW-W64 project) 4.8.2]
+GMake:       /c/Programs/strawberry-perl-5.20.2.1-64bit/c/bin/gmake.exe [GNU Make 4.0.90]
+Gnuplot:     /c/Programs/gp501-win64-mingw/bin/gnuplot.exe [gnuplot 5.0 patchlevel 1]
+ImageMagick: /c/Programs/ImageMagick-6.9.1-2/convert.exe [Version: ImageMagick 6.9.1-2 Q16 x86 2015-04-14 http://www.imagemagick.org]
+Java:        /c/ProgramData/Oracle/Java/javapath/java.exe [java version "1.8.0_45"]
+Make:        /bin/make.exe [GNU Make 3.81]
+MinGW-w64:   /c/Programs/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64
+Perl:        /c/Programs/strawberry-perl-5.20.2.1-64bit/perl/bin/perl.exe [ This is perl 5, version 20, subversion 2 (v5.20.2) built for MSWin32-x64-multi-thread]
+Python:      /c/Programs/Python27/python.exe [Python 2.7.9]
+Subversion:  /c/Programs/svn-win32-1.8.13/bin/svn.exe [svn, version 1.8.13 (r1667537)]
+Vim:         /bin/vim.exe [VIM - Vi IMproved 7.3 (2010 Aug 15, compiled Mar 19 2011 15:37:04)]
+Wget:        /c/Programs/wget-1.11.4-1/bin/wget.exe [GNU Wget 1.11.4 Copyright (C) 2008 Free Software Foundation, Inc.]
+
+
+ENVIRONMENT SETUP COMPLETE.
