@@ -3,7 +3,7 @@
 # Name:          build.sh
 # Description:   CalculiX build script for MINGW
 # Author:        Cesare Guardino
-# Last modified: 11 February 2016
+# Last modified: 22 April 2016
 #
 # GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 #####################################################################################
@@ -70,14 +70,14 @@ get_args() {
     if [ $1 ] ; then
         CGX_VERSION=$1
     else
-        echo "*** ERROR: Please specify the version of CalculiX CGX (pre/post) to build (eg. 2.9)"
+        echo "*** ERROR: Please specify the version of CalculiX CGX (pre/post) to build (eg. 2.10)"
         exit 1
     fi
 
     if [ $2 ] ; then
         CCX_VERSION=$2
     else
-        echo "*** ERROR: Please specify the version of CalculiX CCX (solver) to build (eg. 2.9)"
+        echo "*** ERROR: Please specify the version of CalculiX CCX (solver) to build (eg. 2.10)"
         exit 1
     fi
 

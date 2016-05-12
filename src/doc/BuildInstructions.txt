@@ -2,7 +2,7 @@
 # Name:          BuildInstructions.txt
 # Description:   Build instructions for MinGW-based Windows builds
 # Author:        Cesare Guardino
-# Last modified: 27 January 2016
+# Last modified: 22 April 2016
 #
 # GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 #####################################################################################
@@ -26,9 +26,11 @@ already have the correct tools installed on your system.
 
 3) Download and install MSYS (see reference list below).
 
-4) Obtain a copy of the CalculiX build script and patches directory (eg. CalculiX-GE-2.9-win-src)
+4) Obtain a copy of the CalculiX build script and patches directory:
+       git clone https://github.com/GeneralElectric/CalculiX.git CalculiX
 
-5) Open a new MSYS shell and chdir to your CalculiX-GE-2.9-win-src directory.
+5) Open a new MSYS shell and chdir to the src directory:
+       cd CalculiX/src
 
 6) Edit the user-modifiable entries in etc/bashrc.mingw to point to the
    locations where you have installed the required system tools in the first two
@@ -45,20 +47,20 @@ already have the correct tools installed on your system.
 
 8) If the version checks were all successful and printed the expected version
    details, proceed with compiling the code. Run the following command:
-       ./build.sh 2.9 2.9
+       ./build.sh 2.10 2.10
    This will download and build all required third-party dependencies, build
    CalculiX CCX and CGX, and create an install directory.
 
 9) To test the CCX build, run the script:
-       ./build.sh 2.9 2.9 test
+       ./build.sh 2.10 2.10 test
 
 10) To create a stand-alone binary .zip or .7z package, run the script:
-       ./release.sh 2.9 2.9
+       ./release.sh 2.10 2.10
 
 11) After the build has completed, you can run CCX or CGX in either of two ways:
    (a). From the MSYS shell.
    (b). From a standard Windows CMD.exe command prompt using the created
-        CalculiX-2.9-win-x64.zip or CalculiX-2.9-win-x64.7z stand-alone package.
+        CalculiX-2.10-win-x64.zip or CalculiX-2.10-win-x64.7z stand-alone package.
         This can be used on any Windows machine without access to MSYS shells or compilers.
         See the READMEBinaryPackage.txt file in the generated package.
 
