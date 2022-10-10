@@ -2,7 +2,7 @@
 # Name:          BuildInstructions.txt
 # Description:   Build instructions for MinGW-based Windows builds
 # Author:        Cesare Guardino
-# Last modified: 22 April 2016
+# Last modified: 10 October 2022
 #
 # GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 #####################################################################################
@@ -22,9 +22,10 @@ already have the correct tools installed on your system.
 1) Download and install 7-Zip (see reference list below). This is necessary to
    be able to unzip the rest of the required packages mentioned in later steps.
 
-2) Download and install wget and MinGW-w64.
+2) Download and install wget, MinGW-w64 and Make (see reference list below).
 
-3) Download and install MSYS (see reference list below).
+3) Download and install Git Bash (recommended - this provides a MSYS shell),
+   or alternatively install MSYS directly (see reference list below).
 
 4) Obtain a copy of the CalculiX build script and patches directory:
        git clone https://github.com/GeneralElectric/CalculiX.git CalculiX
@@ -78,17 +79,27 @@ Version: 4.8.2 (or above)
 URL    : http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/4.8.2/threads-win32/seh/x86_64-4.8.2-release-win32-seh-rt_v3-rev3.7z/download
 For    : Windows port of GCC C/C++ compiler (also includes Fortran compiler).
 
-Name   : MSYS
+Name   : wget
+Version: 1.11.4-1 (or above)
+URL    : http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-bin.zip, http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-dep.zip, http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-doc.zip
+For    : Automatically downloading files from internet (eg. for use in automated build scripts)
+
+Name   : Make
+Version: 3.81 (or above)
+URL    : http://gnuwin32.sourceforge.net/downlinks/make-bin-zip.php, http://gnuwin32.sourceforge.net/downlinks/make-dep-zip.php, http://gnuwin32.sourceforge.net/downlinks/make-doc-zip.php
+For    : Make utility
+
+Name   : Git (Bash) for Windows
+Version: 2.28.0 (or above)
+URL    : https://git-scm.com/download/win
+For    : Git and MSYS shell
+
+Name   : MSYS (if not installing Git Bash)
 Version: Latest
 URL    : http://www.mingw.org/download/installer
 For    : Provides Linux-like emulation shell and utilities (eg. find, grep, ls, make etc.) and tools (eg. bison, flex, m4, yacc etc.).
          Only the "mingw-developer-toolkit" and "msys-base" is required, DO NOT download ming32-* compiler packages (we use MinGW-w64 instead).
          Assuming you installed this to the default /c/MinGW directory, you will need to "cp -p make.exe gmake.exe" in /c/MinGW/msys/1.0/bin (unless have Strawberry Perl).
-
-Name   : wget
-Version: 1.11.4-1 (or above)
-URL    : http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-bin.zip, http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-dep.zip, http://downloads.sourceforge.net/gnuwin32/wget-1.11.4-1-doc.zip
-For    : Automatically downloading files from internet (eg. for use in automated build scripts)
 
 
 4. EXAMPLE OUTPUT FROM SOURCING etc/bashrc.mingw
@@ -101,21 +112,18 @@ Setting environment variables for user-defined installed system tools and utilit
 Adding user-defined installed system tools to PATH ...
 
 Checking versions of installed system tools (based on PATH) ...
-7-Zip:       /c/Program Files/7-Zip/7z.exe [ 7-Zip [64] 9.20 Copyright (c) 1999-2010 Igor Pavlov 2010-11-18]
-G++:         /c/Programs/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64/bin/g++.exe [g++.exe (x86_64-win32-seh-rev3, Built by MinGW-W64 project) 4.8.2]
-GCC:         /c/Programs/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64/bin/gcc.exe [gcc.exe (x86_64-win32-seh-rev3, Built by MinGW-W64 project) 4.8.2]
-GFortran:    /c/Programs/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64/bin/gfortran.exe [GNU Fortran (x86_64-win32-seh-rev3, Built by MinGW-W64 project) 4.8.2]
-GMake:       /c/Programs/strawberry-perl-5.20.2.1-64bit/c/bin/gmake.exe [GNU Make 4.0.90]
-Gnuplot:     /c/Programs/gp501-win64-mingw/bin/gnuplot.exe [gnuplot 5.0 patchlevel 1]
-ImageMagick: /c/Programs/ImageMagick-6.9.1-2/convert.exe [Version: ImageMagick 6.9.1-2 Q16 x86 2015-04-14 http://www.imagemagick.org]
-Java:        /c/ProgramData/Oracle/Java/javapath/java.exe [java version "1.8.0_45"]
-Make:        /bin/make.exe [GNU Make 3.81]
-MinGW-w64:   /c/Programs/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64
-Perl:        /c/Programs/strawberry-perl-5.20.2.1-64bit/perl/bin/perl.exe [ This is perl 5, version 20, subversion 2 (v5.20.2) built for MSWin32-x64-multi-thread]
-Python:      /c/Programs/Python27/python.exe [Python 2.7.9]
-Subversion:  /c/Programs/svn-win32-1.8.13/bin/svn.exe [svn, version 1.8.13 (r1667537)]
-Vim:         /bin/vim.exe [VIM - Vi IMproved 7.3 (2010 Aug 15, compiled Mar 19 2011 15:37:04)]
-Wget:        /c/Programs/wget-1.11.4-1/bin/wget.exe [GNU Wget 1.11.4 Copyright (C) 2008 Free Software Foundation, Inc.]
+ 7-Zip 19.00 (x64) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21]
+G++:         /c/Apps/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64/bin/g++ [g++.exe (x86_64-win32-seh-rev3, Built by MinGW-W64 project) 4.8.2]
+GCC:         /c/Apps/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64/bin/gcc [gcc.exe (x86_64-win32-seh-rev3, Built by MinGW-W64 project) 4.8.2]
+GFortran:    /c/Apps/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64/bin/gfortran [GNU Fortran (x86_64-win32-seh-rev3, Built by MinGW-W64 project) 4.8.2]
+GMake:       /c/Apps/Strawberry/c/bin/gmake [GNU Make 4.2.1]
+Gnuplot:     /c/Apps/gnuplot/bin/gnuplot [gnuplot 5.2 patchlevel 8]
+ImageMagick: /c/Apps/ImageMagick-6.9.1-2/convert [Version: ImageMagick 6.9.1-2 Q16 x86 2015-04-14 http://www.imagemagick.org]
+Make:        /c/Apps/make-3.81/bin/make [GNU Make 3.81]
+MinGW-w64:   /c/Apps/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64
+Perl:        /usr/bin/perl [ This is perl 5, version 32, subversion 0 (v5.32.0) built for x86_64-msys-thread-multi]
+Vim:         /usr/bin/vim [VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Jun 1 2020 06:42:35)]
+Wget:        /c/Apps/wget-1.11.4-1/bin/wget [GNU Wget 1.11.4]
 
 
 ENVIRONMENT SETUP COMPLETE.

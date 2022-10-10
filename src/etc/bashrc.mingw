@@ -3,46 +3,49 @@
 # Name:          bashrc.mingw
 # Description:   Environemnt setup script for use with MSYS shell for MinGW-based build
 # Author:        Cesare Guardino
-# Last modified: 19 January 2016
+# Last modified: 15 September 2022
 #
 # GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 #######################################################################################
 
-export PROGRAMS_HOME=/c/Programs
+export PROGRAMS_HOME=/c/Apps
 
 # {{{ DEFINE USER EDITABLE FUNCTIONS
 set_system_paths() {
     echo "Setting environment variables for user-defined installed system tools and utilities ..."
     #export CMAKE_HOME=$PROGRAMS_HOME/cmake-3.2.3-win32-x86
-    #export GIT_HOME=$PROGRAMS_HOME/Git
+    export MAKE_HOME=$PROGRAMS_HOME/make-3.81
+    export GIT_HOME=$PROGRAMS_HOME/Git
     #export JAVA_HOME="/c/Program Files/Java/jre1.8.0_45"
-    export GNUPLOT_HOME=$PROGRAMS_HOME/gp501-win64-mingw
+    export GNUPLOT_HOME=$PROGRAMS_HOME/gnuplot
     export IMAGEMAGICK_HOME=$PROGRAMS_HOME/ImageMagick-6.9.1-2
     export MINGW_HOME=$PROGRAMS_HOME/x86_64-4.8.2-release-win32-seh-rt_v3-rev3/mingw64
+    export MSYS_HOME=$GIT_HOME/usr
     #export MPI_ROOTDIR=$PROGRAMS_HOME/OpenMPI_v1.6.1-x64
     #export PARAVIEW_HOME=$PROGRAMS_HOME/ParaView-4.3.1
-    export PERL_HOME=$PROGRAMS_HOME/strawberry-perl-5.20.2.1-64bit/perl
+    export PERL_HOME=$PROGRAMS_HOME/Strawberry/perl
     #export PEXPORTS_HOME=$PROGRAMS_HOME/pexports-0.46-mingw32
-    #export PYTHON_HOME=$PROGRAMS_HOME/Python27
+    #export PYTHON_HOME=$PROGRAMS_HOME/python-3.10.4-embed-amd64
     #export SUBVERSION_HOME=$PROGRAMS_HOME/svn-win32-1.8.13
     export WGET_HOME=$PROGRAMS_HOME/wget-1.11.4-1
-    export ZIP_HOME="/c/Program Files/7-Zip"
+    export ZIP_HOME=$PROGRAMS_HOME/7-Zip
 }
 
 add_to_path() {
     echo
     echo "Adding user-defined installed system tools to PATH ..."
-    export PATH=$ZIP_HOME:$PATH
+    #export PATH=$ZIP_HOME:$PATH
     export PATH=$WGET_HOME/bin:$PATH
-    export PATH=$GNUPLOT_HOME/bin:$PATH
+    #export PATH=$GNUPLOT_HOME/bin:$PATH
     export PATH=$IMAGEMAGICK_HOME:$PATH
     #export PATH=$JAVA_HOME/bin:$PATH
     #export PATH=$PYTHON_HOME:$PATH
     #export PATH=$SUBVERSION_HOME/bin:$PATH
     #export PATH=$GIT_HOME/cmd:$PATH
     #export PATH=$PARAVIEW_HOME/bin:$PATH
-    export PATH=$PERL_HOME/bin:$PATH
+    #export PATH=$PERL_HOME/bin:$PATH
     #export PATH=$CMAKE_HOME/bin:$PATH
+    export PATH=$MAKE_HOME/bin:$PATH
     #export PATH=$MPI_ROOTDIR/bin:$PATH
     #export PATH=$PEXPORTS_HOME/bin:$PATH
     export PATH=$MINGW_HOME/bin:$PATH
@@ -71,7 +74,7 @@ check_versions() {
     #echo "Git:        " `which git`      [`(git --version 2>&1) 2> /dev/null | head -1`]
     echo "Gnuplot:    " `which gnuplot`  [`(gnuplot --version 2>&1) 2> /dev/null | head -1`]
     echo "ImageMagick:" `which convert`  [`(convert --version 2>&1) 2> /dev/null | head -1`]
-    echo "Java:       " `which java`     [`(java -version 2>&1) 2> /dev/null | head -1`]
+    #echo "Java:       " `which java`     [`(java -version 2>&1) 2> /dev/null | head -1`]
     #echo "M4:         " `which m4`       [`(m4 --version 2>&1) 2> /dev/null | head -1`]
     echo "Make:       " `which make`     [`(make --version 2>&1) 2> /dev/null | head -1`]
     echo "MinGW-w64:  " $MINGW_HOME
@@ -79,10 +82,10 @@ check_versions() {
     #echo "PEexports:  " `which pexports` [`(pexports -v 2>&1) 2> /dev/null | head -1`]
     #echo "ParaView:   " $PARAVIEW_HOME
     echo "Perl:       " `which perl`     [`(perl -v 2>&1) 2> /dev/null | head -2`]
-    echo "Python:     " `which python`   [`(python --version 2>&1) 2> /dev/null | head -1`]
-    echo "Subversion: " `which svn`      [`(svn --version 2>&1) 2> /dev/null | head -1`]
+    #echo "Python:     " `which python`   [`(python --version 2>&1) 2> /dev/null | head -1`]
+    #echo "Subversion: " `which svn`      [`(svn --version 2>&1) 2> /dev/null | head -1`]
     echo "Vim:        " `which vim`      [`(vim --version 2>&1) 2> /dev/null | head -1`]
-    echo "Wget:       " `which wget`     [`(wget --version 2>&1) 2> /dev/null | head -3`]
+    echo "Wget:       " `which wget`     [`(wget --version 2>&1) 2> /dev/null | head -1`]
 }
 
 finish() {

@@ -3,7 +3,7 @@
 # Name:          release.sh
 # Description:   CalculiX binary package creation script for MINGW
 # Author:        Cesare Guardino
-# Last modified: 22 April 2016
+# Last modified: 10 October 2022
 #
 # GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 #####################################################################################
@@ -98,9 +98,9 @@ mkdir $PACKAGE_DIR
 
 echo "Download missing packages ..."
 mkchk $CALCULIX_HOME/downloads
-download ccx_2.10.pdf http://www.dhondt.de/ccx_2.10.pdf
-download cgx_2.10.pdf http://www.dhondt.de/cgx_2.10.pdf
-download cgx_2.10.exa.tar.bz2 http://www.dhondt.de/cgx_2.10.exa.tar.bz2
+download ccx_${CCX_VERSION}.pdf http://www.dhondt.de/ccx_${CCX_VERSION}.pdf
+download cgx_${CGX_VERSION}.pdf http://www.dhondt.de/cgx_${CGX_VERSION}.pdf
+download cgx_${CGX_VERSION}.exa.tar.bz2 http://www.dhondt.de/cgx_${CGX_VERSION}.exa.tar.bz2
 download coreutils-5.97-3-msys-1.0.13-src.tar.lzma http://sourceforge.net/projects/mingw/files/MSYS/Base/coreutils/coreutils-5.97-3/coreutils-5.97-3-msys-1.0.13-src.tar.lzma/download
 download dos2unix-7.2.3-1-msys-1.0.18-src.tar.lzma http://sourceforge.net/projects/mingw/files/MSYS/Extension/dos2unix/dos2unix-7.2.3-1/dos2unix-7.2.3-1-msys-1.0.18-src.tar.lzma/download
 
@@ -111,21 +111,21 @@ rm -f $PACKAGE_DIR/etc/bashrc.mingw
 mkdir $PACKAGE_DIR/doc
 cp -p $CALCULIX_HOME/doc/OSS_NOTICE.pdf $PACKAGE_DIR/OSS_NOTICE.pdf
 cp -p $CALCULIX_HOME/doc/README_$TAG.txt $PACKAGE_DIR/README.txt
-cp -p $CALCULIX_HOME/downloads/ccx_2.10.pdf $PACKAGE_DIR/doc
-cp -p $CALCULIX_HOME/downloads/cgx_2.10.pdf $PACKAGE_DIR/doc
-cp -p $CALCULIX_HOME/downloads/cgx_2.10.exa.tar.bz2 $PACKAGE_DIR/doc
+cp -p $CALCULIX_HOME/downloads/ccx_${CCX_VERSION}.pdf $PACKAGE_DIR/doc
+cp -p $CALCULIX_HOME/downloads/cgx_${CGX_VERSION}.pdf $PACKAGE_DIR/doc
+cp -p $CALCULIX_HOME/downloads/cgx_${CGX_VERSION}.exa.tar.bz2 $PACKAGE_DIR/doc
 
 echo "Copying required MSYS files ..."
 mkdir $PACKAGE_DIR/utils
 cp -p $CALCULIX_HOME/doc/LICENSE_MINGW.txt $PACKAGE_DIR/utils
-cp -p $WD/../share/doc/MSYS/MSYS_LICENSE.rtf $PACKAGE_DIR/utils
-cp -p $WD/msys-1.0.dll $PACKAGE_DIR/utils
-cp -p $WD/msys-iconv-2.dll $PACKAGE_DIR/utils
-cp -p $WD/msys-intl-8.dll $PACKAGE_DIR/utils
-cp -p $WD/rm.exe $PACKAGE_DIR/utils
-cp -p $WD/tail.exe $PACKAGE_DIR/utils
-cp -p $WD/tee.exe $PACKAGE_DIR/utils
-cp -p $WD/unix2dos.exe $PACKAGE_DIR/utils
+cp -p $MSYS_HOME/share/licenses/dos2unix/LICENSE $PACKAGE_DIR/utils/LICENSE_DOS2UNIX.txt
+cp -p $MSYS_HOME/bin/msys-2.0.dll $PACKAGE_DIR/utils
+cp -p $MSYS_HOME/bin/msys-iconv-2.dll $PACKAGE_DIR/utils
+cp -p $MSYS_HOME/bin/msys-intl-8.dll $PACKAGE_DIR/utils
+cp -p $MSYS_HOME/bin/rm.exe $PACKAGE_DIR/utils
+cp -p $MSYS_HOME/bin/tail.exe $PACKAGE_DIR/utils
+cp -p $MSYS_HOME/bin/tee.exe $PACKAGE_DIR/utils
+cp -p $MSYS_HOME/bin/unix2dos.exe $PACKAGE_DIR/utils
 cp -p $CALCULIX_HOME/downloads/*.lzma $PACKAGE_DIR/utils
 
 echo "Adding packaging information ..."
