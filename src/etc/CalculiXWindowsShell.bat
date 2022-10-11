@@ -18,4 +18,5 @@ echo -------------------------------
 echo Command shell for CalculiX 2.20
 echo -------------------------------
 echo/
+cd /d %USERPROFILE%
 cmd.exe
