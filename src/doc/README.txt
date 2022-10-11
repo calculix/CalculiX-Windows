@@ -1,8 +1,8 @@
 #####################################################################################
-# Name:          README_GE-OSS.txt
+# Name:          README.txt
 # Description:   Installation and usage instructions for CalculiX Windows binary package
 # Author:        Cesare Guardino
-# Last modified: 26 January 2016
+# Last modified: 11 October 2022
 #
 # GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 #####################################################################################
@@ -31,8 +31,8 @@ INSTRUCTIONS ON HOW TO INSTALL AND RUN THE WINDOWS VERSION OF CALCULIX
    where <PATH_TO_CALCULIX> is the full path of the directory where you unzipped the package.
    For example:
        rem =========== USER EDITABLE SETTINGS ===========
-       set GNUPLOT_HOME=C:\Programs\gp501-win64-mingw
-       set IMAGEMAGICK_HOME=C:\Programs\ImageMagick-6.9.1-2
+       set GNUPLOT_HOME=C:\Apps\gnuplot
+       set IMAGEMAGICK_HOME=C:\Apps\ImageMagick-6.9.1-2
        rem ==============================================
 
 3) Optionally, create file associations and icons for *.fbd, *.frd, *.inp, *.stl and *.stp files by running the script:
@@ -56,7 +56,7 @@ INSTRUCTIONS ON HOW TO INSTALL AND RUN THE WINDOWS VERSION OF CALCULIX
        cgx -c foo.inp       ### Check case setup
        ccx foo              ### Run single-threaded solver
        ccx_MT foo           ### Run multi-threaded solver
-       unix2dos foo.frd     ### Required for CGX to correctly read in .frd file
+       unix2dos foo.frd     ### Required for CGX to correctly read in .frd file (mandatory for 2.9 and 2.10, optional for 2.20 or above)
        cgx foo.frd          ### View results
 
 

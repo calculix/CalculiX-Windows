@@ -3,7 +3,7 @@ rem ############################################################################
 rem Name:          CalculiXWindowsEnvironment.bat
 rem Description:   Environment setup script for use with Windows CMD prompt shells
 rem Author:        Cesare Guardino
-rem Last modified: 19 January 2016
+rem Last modified: 11 October 2022
 rem 
 rem GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 rem #####################################################################################
@@ -11,8 +11,8 @@ rem ############################################################################
 if defined CALCULIX_ENV_SET goto :eof
 
 rem =========== USER EDITABLE SETTINGS ===========
-rem set GNUPLOT_HOME=C:\Programs\gp501-win64-mingw
-rem set IMAGEMAGICK_HOME=C:\Programs\ImageMagick-6.9.1-2
+rem set GNUPLOT_HOME=C:\Apps\gnuplot
+rem set IMAGEMAGICK_HOME=C:\Apps\ImageMagick-6.9.1-2
 rem ==============================================
 
 if defined GNUPLOT_HOME set PATH=%GNUPLOT_HOME%\bin;%PATH%

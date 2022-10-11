@@ -3,7 +3,7 @@
 # Name:          release.sh
 # Description:   CalculiX binary package creation script for MINGW
 # Author:        Cesare Guardino
-# Last modified: 10 October 2022
+# Last modified: 11 October 2022
 #
 # GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 #####################################################################################
@@ -110,7 +110,7 @@ cp -rp $CALCULIX_HOME/etc $PACKAGE_DIR
 rm -f $PACKAGE_DIR/etc/bashrc.mingw
 mkdir $PACKAGE_DIR/doc
 cp -p $CALCULIX_HOME/doc/OSS_NOTICE.pdf $PACKAGE_DIR/OSS_NOTICE.pdf
-cp -p $CALCULIX_HOME/doc/README_$TAG.txt $PACKAGE_DIR/README.txt
+cp -p $CALCULIX_HOME/doc/README.txt $PACKAGE_DIR/README.txt
 cp -p $CALCULIX_HOME/downloads/ccx_${CCX_VERSION}.pdf $PACKAGE_DIR/doc
 cp -p $CALCULIX_HOME/downloads/cgx_${CGX_VERSION}.pdf $PACKAGE_DIR/doc
 cp -p $CALCULIX_HOME/downloads/cgx_${CGX_VERSION}.exa.tar.bz2 $PACKAGE_DIR/doc
