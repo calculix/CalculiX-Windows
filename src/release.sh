@@ -3,7 +3,7 @@
 # Name:          release.sh
 # Description:   CalculiX binary package creation script for MINGW
 # Author:        Cesare Guardino
-# Last modified: 11 October 2022
+# Last modified: 04 September 2023
 #
 # GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 #####################################################################################
@@ -67,10 +67,10 @@ get_args() {
     fi
 
     if [ $3 ] ; then
-        TAG=$3
-        echo "*** WARNING: Using tag '$TAG' instead of default"
+        PATCH=$3
+        echo "*** WARNING: Using tag '$PATCH' instead of default"
     else
-        TAG=GE-OSS
+        PATCH=0
     fi
 }
 
@@ -88,7 +88,7 @@ if [ ! -d $RELEASE_DIR ] ; then
     mkdir $RELEASE_DIR
 fi
 
-PACKAGE_DIR=$RELEASE_DIR/CalculiX-$TAG-$CCX_VERSION-win-$ARCH
+PACKAGE_DIR=$RELEASE_DIR/CalculiX-$CCX_VERSION.$PATCH-win-$ARCH
 if [ -d $PACKAGE_DIR ] ; then
     echo "Removing previous $PACKAGE_DIR ..."
     rm -rf $PACKAGE_DIR
