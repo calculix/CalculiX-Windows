@@ -3,7 +3,7 @@ rem ############################################################################
 rem Name:          CalculiXWindowsShell.bat
 rem Description:   Script to start a Windows CMD prompt shell with CalculiX environment
 rem Author:        Cesare Guardino
-rem Last modified: 11 October 2022
+rem Last modified: 06 September 2023
 rem 
 rem GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 rem #####################################################################################
@@ -15,7 +15,7 @@ set CALCULIX_ETC_DIR=
 rem mode 160,40
 rem color 30
 echo -------------------------------
-echo Command shell for CalculiX 2.20
+echo Command shell for CalculiX 2.21
 echo -------------------------------
 echo/
 cd /d %USERPROFILE%
