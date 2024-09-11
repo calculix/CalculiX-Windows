@@ -66,7 +66,7 @@ already have the correct tools installed on your system.
    (b). From a standard Windows CMD.exe command prompt using the created
         CalculiX-2.22-win-x64.zip or CalculiX-2.22-win-x64.7z stand-alone package.
         This can be used on any Windows machine without access to MSYS shells or compilers.
-        See the READMEBinaryPackage.txt file in the generated package.
+        See the README.txt file in the generated package.
 
 
 3. EXTERNAL PACKAGE REFERENCE
