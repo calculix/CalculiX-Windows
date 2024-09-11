@@ -51,20 +51,20 @@ already have the correct tools installed on your system.
 
 8) If the version checks were all successful and printed the expected version
    details, proceed with compiling the code. Run the following command:
-       ./build.sh 2.10 2.10
+       ./build.sh 2.22 2.22
    This will download and build all required third-party dependencies, build
    CalculiX CCX and CGX, and create an install directory.
 
 9) To test the CCX build, run the script:
-       ./build.sh 2.10 2.10 test
+       ./build.sh 2.22 2.22 test
 
 10) To create a stand-alone binary .zip or .7z package, run the script:
-       ./release.sh 2.10 2.10
+       ./release.sh 2.22 2.22
 
 11) After the build has completed, you can run CCX or CGX in either of two ways:
    (a). From the MSYS shell.
    (b). From a standard Windows CMD.exe command prompt using the created
-        CalculiX-2.10-win-x64.zip or CalculiX-2.10-win-x64.7z stand-alone package.
+        CalculiX-2.22-win-x64.zip or CalculiX-2.22-win-x64.7z stand-alone package.
         This can be used on any Windows machine without access to MSYS shells or compilers.
         See the READMEBinaryPackage.txt file in the generated package.
 
