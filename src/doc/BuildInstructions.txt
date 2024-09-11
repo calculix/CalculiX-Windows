@@ -2,7 +2,7 @@
 # Name:          BuildInstructions.txt
 # Description:   Build instructions for MinGW-based Windows builds
 # Author:        Cesare Guardino
-# Last modified: 10 October 2022
+# Last modified: 11 September 2024
 #
 # GE CONFIDENTIAL INFORMATION © 2016 General Electric Company - All Rights Reserved
 #####################################################################################
@@ -27,8 +27,11 @@ already have the correct tools installed on your system.
 3) Download and install Git Bash (recommended - this provides a MSYS shell),
    or alternatively install MSYS directly (see reference list below).
 
-4) Obtain a copy of the CalculiX build script and patches directory:
-       git clone https://github.com/GeneralElectric/CalculiX.git CalculiX
+4) Obtain a copy of the CalculiX build script and patches directory.
+   If using HTTPS use:
+       git clone https://github.com/guardino/CalculiX.git CalculiX
+   Otherwise if using SSH use:
+       git clone git@github.com:guardino/CalculiX.git CalculiX
 
 5) Open a new MSYS shell and chdir to the src directory:
        cd CalculiX/src
